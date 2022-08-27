@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\ProductCategory;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
+use Exception;
 
 class ProductCategoryController extends Controller
 {
@@ -14,10 +15,11 @@ class ProductCategoryController extends Controller
         $id = $request->input('id');
         $limit = $request->input('limit');
         $name = $request->input('name');
+        // dd($name);
         $show_product = $request->input('show_product');
 
         if ($id) {
-            $category = ProductCategory::with(['products'])->find($id);
+            $category = ProductCategory::tree()->find($id);
     
             if ($category) {
                 return ResponseFormatter::success($category, 'data kategori berhasil di ambil');
@@ -25,6 +27,7 @@ class ProductCategoryController extends Controller
                 return ResponseFormatter::error(null, 'data kategori tidak ada', 404);
             }
         }
+        $categories = ProductCategory::withCount('products')->with('products')->get();
         $category = ProductCategory::query();
 
         if ($name) {
@@ -34,7 +37,11 @@ class ProductCategoryController extends Controller
             $category->with('products');
         }
 
-        return ResponseFormatter::success($category->paginate($limit), 'data produk berhasil di ambil');
+        if ($name) {
+            return ResponseFormatter::success($category->paginate($limit), 'data produk berhasil di ambil');
+        } else {
+            return ResponseFormatter::success($categories, 'data produk berhasil di ambil');
+        }
     }
 
     public function store(Request $request) 

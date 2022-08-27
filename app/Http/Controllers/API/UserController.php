@@ -104,7 +104,7 @@ class UserController extends Controller
         return ResponseFormatter::success($token, 'Token Revoked');
     }
 
-    public function updateUser() 
+    public function updateUser(Request $request) 
     { 
         $data = $request->all();
 

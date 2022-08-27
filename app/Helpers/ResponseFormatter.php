@@ -12,11 +12,30 @@ class ResponseFormatter
     ],
     'data' => null
   ];
+  
+  protected static $responses = [
+    'meta' => [
+      'code' => 200,
+      'status' => 'success',
+      'message' => null
+    ],
+    'data' => null,
+    'count' => null
+  ];
 
   public static function success($data = null, $message = null)
   {
     self::$response['meta']['message'] = $message;
     self::$response['data'] = $data;
+
+    return response()->json(self::$response, self::$response['meta']['code']);
+  }
+  
+  public static function successes($data = null, $datas = null,  $message = null)
+  {
+    self::$response['meta']['message'] = $message;
+    self::$response['data'] = $data;
+    self::$response['count'] = $datas;
 
     return response()->json(self::$response, self::$response['meta']['code']);
   }

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->float('total_price')->default(0);
             $table->float('shipping_price')->default(0);
-            $table->string('status')->default('PENDING');
+            $table->string('status')->default('UNPAID');
             $table->string('payment')->default('MANUAL');
             $table->softDeletes();
             $table->timestamps();

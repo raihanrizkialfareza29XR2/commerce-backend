@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\API\CartController;
+use App\Http\Controllers\API\ProductCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
@@ -23,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('products', [ProductController::class, 'all']);
 Route::get('categories', [ProductCategoryController::class, 'all']);
+Route::post('categories', [ProductCategoryController::class, 'store']);
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
@@ -33,4 +36,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('product/update/{id}', [ProductController::class, 'updateProduct']);
     Route::delete('product/delete/{id}', [ProductController::class, 'deleteProduct']);
     Route::get('transaction', [TransactionController::class, 'all']);
+    Route::post('add/to/cart', [CartController::class, 'add']);
+    Route::put('update/cart/{id}', [CartController::class, 'update']);
+    Route::get('cart', [CartController::class, 'cart']);
 });

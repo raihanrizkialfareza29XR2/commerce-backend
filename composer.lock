@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "854f39ebd9f00970114b80fc82bf32d4",
+    "content-hash": "d5cff5e72befb2e2f8269a38c80c46b9",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -119,6 +119,77 @@
                 }
             ],
             "time": "2021-08-15T20:50:18+00:00"
+        },
+        {
+            "name": "bumbummen99/shoppingcart",
+            "version": "4.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bumbummen99/LaravelShoppingcart.git",
+                "reference": "1c50fb564826b6ee748d2d9afad7447b6884166e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bumbummen99/LaravelShoppingcart/zipball/1c50fb564826b6ee748d2d9afad7447b6884166e",
+                "reference": "1c50fb564826b6ee748d2d9afad7447b6884166e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/events": "5.4.*||5.5.*||5.6.*||5.7.*||5.8.*||^6.0||^7.0||^8.0||^9.0",
+                "illuminate/session": "5.4.*||5.5.*||5.6.*||5.7.*||5.8.*||^6.0||^7.0||^8.0||^9.0",
+                "illuminate/support": "5.4.*||5.5.*||5.6.*||5.7.*||5.8.*||^6.0||^7.0||^8.0||^9.0",
+                "nesbot/carbon": "~1.20||^1.26.3||^2.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^3.4|^4.0|^5.0|^6.0",
+                "phpunit/phpunit": "~5.0||~6.0||~7.0||~8.0||~9.0"
+            },
+            "suggest": {
+                "gloudemans/notify": "Simple flash notifications for Laravel"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Gloudemans\\Shoppingcart\\ShoppingcartServiceProvider"
+                    ],
+                    "aliases": {
+                        "Cart": "Gloudemans\\Shoppingcart\\Facades\\Cart"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Gloudemans\\Shoppingcart\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rob Gloudemans",
+                    "email": "info@robgloudemans.nl",
+                    "homepage": "http://robgloudemans.nl/"
+                },
+                {
+                    "name": "Patrick Henninger",
+                    "email": "privat@skyraptor.eu",
+                    "homepage": "https://skyraptor.eu/"
+                }
+            ],
+            "description": "Laravel Shoppingcart",
+            "keywords": [
+                "laravel",
+                "shoppingcart"
+            ],
+            "support": {
+                "issues": "https://github.com/bumbummen99/LaravelShoppingcart/issues",
+                "source": "https://github.com/bumbummen99/LaravelShoppingcart/tree/4.2.0"
+            },
+            "time": "2022-05-15T15:32:38+00:00"
         },
         {
             "name": "dasprid/enum",
@@ -2198,6 +2269,59 @@
                 }
             ],
             "time": "2022-07-24T11:55:47+00:00"
+        },
+        {
+            "name": "munna/shopping-cart",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MunnaAhmed/ShoppingCart.git",
+                "reference": "a23917c1e4bcb03166b0b2d9c5f1bfcd3a50a7e1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MunnaAhmed/ShoppingCart/zipball/a23917c1e4bcb03166b0b2d9c5f1bfcd3a50a7e1",
+                "reference": "a23917c1e4bcb03166b0b2d9c5f1bfcd3a50a7e1",
+                "shasum": ""
+            },
+            "type": "package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Munna\\ShoppingCart\\ShoppingCartServiceProvider"
+                    ],
+                    "aliases": {
+                        "Cart": "Munna\\ShoppingCart\\Facades\\Cart"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Munna\\ShoppingCart\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Munna",
+                    "email": "munnawb9@gmail.com"
+                }
+            ],
+            "description": "Simple Laravel Shopping Cart Package. Store Your Cart Items On Local. No Need To Any Migration Or Database Query/Relation. Its More Flexible. Happy Laravel Coding...",
+            "keywords": [
+                "Ecommerce Shopping Cart",
+                "Laravel shopping cart",
+                "ecommerce",
+                "shopping cart"
+            ],
+            "support": {
+                "issues": "https://github.com/MunnaAhmed/ShoppingCart/issues",
+                "source": "https://github.com/MunnaAhmed/ShoppingCart/tree/v1.0.0"
+            },
+            "time": "2021-01-14T23:07:01+00:00"
         },
         {
             "name": "nesbot/carbon",
