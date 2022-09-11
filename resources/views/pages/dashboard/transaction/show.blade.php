@@ -44,7 +44,7 @@
                             </tr>
                             <tr>
                                 <th class="border px-6 py-4 text-right">Payment</th>
-                                <td class="border px-6 py-4">{{ $transaction->payment }}</td>
+                                <td class="border px-6 py-4">{{ $transaction->payment_method }}</td>
                             </tr>
                             <tr>
                                 <th class="border px-6 py-4 text-right">Total Price</th>

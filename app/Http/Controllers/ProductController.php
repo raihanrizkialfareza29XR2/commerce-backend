@@ -27,11 +27,15 @@ class ProductController extends Controller
                             href="' . route('dashboard.product.gallery.index', $item->id) . '">
                             Gallery
                         </a>
+                        <a class="inline ml-2 border border-blue-700 bg-blue-700 text-black rounded-md px-2 py-1 m-1 transition duration-500 ease select-none hover:bg-blue-800 focus:outline-none focus:shadow-outline" 
+                            href="' . route('dashboard.variant.show', $item->id) . '">
+                            Variant
+                        </a>
                         <a class="inline ml-2 border border-gray-700 bg-gray-700 text-black rounded-md px-2 py-1 m-1 transition duration-500 ease select-none hover:bg-gray-800 focus:outline-none focus:shadow-outline" 
                             href="' . route('dashboard.product.edit', $item->id) . '">
                             Edit
                         </a>
-                        <form class="inline ml-2" action="' . route('dashboard.product.destroy', $item->id) . '" method="POST">
+                        <form class="mt-2" action="' . route('dashboard.product.destroy', $item->id) . '" method="POST">
                         <button class="border border-red-500 bg-red-500 text-white rounded-md px-2 py-1 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline" >
                             Hapus
                         </button>

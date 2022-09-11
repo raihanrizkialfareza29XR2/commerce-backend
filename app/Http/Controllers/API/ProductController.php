@@ -7,9 +7,30 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
+use App\Models\Variant;
 
 class ProductController extends Controller
 {
+    public function single($id) 
+    { 
+        $product = Product::with(['category', 'variant', 'galleries'])->where('id', $id)->first();
+        if ($product) {
+            return ResponseFormatter::success($product, 'data produk berhasil di ambil');
+        } else {
+            return ResponseFormatter::error(null, 'data produk tidak ada', 404);
+        }
+    }
+    
+    public function singlePrice($id) 
+    { 
+        $variant = Variant::where('id', $id)->first();
+        if ($variant) {
+            return ResponseFormatter::success($variant, 'data produk berhasil di ambil');
+        } else {
+            return ResponseFormatter::error(null, 'data produk tidak ada', 404);
+        }
+    }
+
     public function all(Request $request)
     {
         $id = $request->input('id');

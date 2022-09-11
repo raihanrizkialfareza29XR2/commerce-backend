@@ -18,8 +18,7 @@ return new class extends Migration
             $table->integer('user_id');
             $table->integer('product_id');
             $table->integer('quantity');
-            $table->integer('subtotal');
-            $table->integer('total');
+            $table->integer('variant_id')->nullable();
             $table->timestamps();
         });
     }

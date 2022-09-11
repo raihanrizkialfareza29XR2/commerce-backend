@@ -24,6 +24,11 @@ class ProductCategory extends Model
         }
     }
 
+    public function parname() 
+    { 
+        return $this->belongsTo(ProductCategory::class, 'parent_id', 'id');
+    }
+
     public function parent() {
         $categories = ProductCategory::all();
         foreach ($categories as $category) {

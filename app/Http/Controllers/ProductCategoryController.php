@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProductCategoryRequest;
+use App\Exports\CategoryExport;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
+use App\Http\Requests\ProductCategoryRequest;
+use App\Imports\CategoryImport;
 
 class ProductCategoryController extends Controller
 {
@@ -128,6 +131,28 @@ class ProductCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = ProductCategory::findOrFail($id);
+        $category->delete();
+
+        return redirect()->route('dashboard.category.index');
+    }
+
+    public function exportCategory() 
+    {
+        return Excel::download(new CategoryExport, 'listcat.xlsx');
+    }
+
+    public function import(Request $request) 
+    { 
+        $file = $request->file('file')->store('public/import');
+
+        $import = new CategoryImport;
+        $import->import($file);
+
+        if ($import->failures()) {
+            return back()->withFailures($import->failures());
+        }
+
+        return redirect()->route('dashboard.category.index');
     }
 }

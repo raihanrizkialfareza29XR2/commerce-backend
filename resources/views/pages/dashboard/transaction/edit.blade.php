@@ -28,7 +28,17 @@
                     @csrf
                     @method('put')
                     <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full px-3">
+                        <div class="w-full px-3 mb-3">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+                                Foto Konfirmasi
+                            </label>
+                            @if ($item->confirm_image != null)
+                            <img src="{{ asset('/public/storage' . $item->confirm_image) }}" alt="">
+                            @else
+                                <h2>Belum ada foto konfirmasi</h2>
+                            @endif
+                        </div>
+                        <div class="w-full px-3 mt-4">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                                 Status
                             </label>
@@ -36,11 +46,13 @@
                                 <option value="{{ $item->status }}">{{ $item->status }}</option>
                                 <option disabled>-------</option>
                                 <option value="PENDING">PENDING</option>
-                                <option value="SUCCESS">SUCCESS</option>
+                                <option value="PACKED">PACKED</option>
                                 <option value="CANCELLED">CANCELLED</option>
                                 <option value="FAILED">FAILED</option>
                                 <option value="SHIPPING">SHIPPING</option>
                                 <option value="SHIPPED">SHIPPED</option>
+                                <option value="UNPAID">UNPAID</option>
+                                <option value="CONFIRMED">CONFIRMED</option>
                             </select>
                         </div>
                     </div>
