@@ -92,7 +92,7 @@ class CheckoutController extends Controller
             ]);
 
             return ResponseFormatter::success([
-                'message' => 'Success Confirm Payment, Please wait a patient time',
+                'message' => 'Success Confirm Payment, Please wait for a patient time',
             ], 'Success', 200);
         }
         

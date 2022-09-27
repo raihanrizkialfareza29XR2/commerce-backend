@@ -4,12 +4,14 @@ namespace App\Http\Controllers\API;
 
 use Exception;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
 use Laravel\Fortify\Rules\Password;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Socialite\Facades\Socialite;
 
 class UserController extends Controller
 {
@@ -57,6 +59,47 @@ class UserController extends Controller
             ], 'Auth Failed', 500);
         }
     }
+
+    public function googleLogin() 
+    { 
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function googleCallback() 
+    {
+        try {
+            $data = Socialite::driver('google')->user();
+            $user = User::where('email', $data->email)->first();
+            if ($user) {
+                Auth::login($user);
+                $tokenResult = $user->createToken('authToken')->plainTextToken;
+                return ResponseFormatter::success([
+                    'access_token' => $tokenResult,
+                    'token_type' => 'Bearer',
+                    'user' => $user,
+                ],'Success Login', 200);
+            } else {
+                $regist = User::create([
+                    'name' => ucwords($data->name),
+                    'email' => $data->email,
+                    'email_verified_at' => now(),
+                    'password' => bcrypt('defaultPassword'),
+                    'remember_token' => Str::random(10),
+                ]);
+
+                $tokenResult = $regist->createToken('authToken')->plainTextToken;
+                Auth::login($regist);
+                return ResponseFormatter::success([
+                    'access_token' => $tokenResult,
+                    'token_type' => 'Bearer',
+                    'user' => $user,
+                ],'Success Login and Register', 200);
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+
     public function login(Request $request) 
     { 
         try {
@@ -100,8 +143,8 @@ class UserController extends Controller
     
     public function logout(Request $request) 
     { 
-        $token = $request->user()->currentAccessToken()->delete();
-        return ResponseFormatter::success($token, 'Token Revoked');
+        Auth::logout();
+        return ResponseFormatter::success('Token Revoked');
     }
 
     public function updateUser(Request $request) 

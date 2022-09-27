@@ -34,6 +34,8 @@ Route::get('price/{id}', [ProductController::class, 'singlePrice']);
 Route::get('categories', [ProductCategoryController::class, 'all']);
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
+Route::get('login/google', [UserController::class, 'googleLogin']);
+Route::get('login/google/callback', [UserController::class, 'googleCallback']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('user', [UserController::class, 'fetch']);
     Route::post('update', [UserController::class, 'updateUser']);
